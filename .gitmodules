@@ -1,0 +1,3 @@
+[submodule "deps/recordlogs"]
+	path = deps/recordlogs
+	url = https://github.com/yinyin/recordlogs.git

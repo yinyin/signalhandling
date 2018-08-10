@@ -5,16 +5,19 @@
 extern "C" {
 #endif
 
-typedef void (*signalhandler_callable)(int);
+typedef void (*signalhandling_handler_callable)(int);
 
-int ignore_signal(int sig);
+int signalhandling_ignore_signal(int sig);
 
-int setup_stop_signal_handler(signalhandler_callable handler_func);
+int signalhandling_setup_stop_signal_handler(
+        signalhandling_handler_callable handler_func);
 
-int setup_signal_handler(int sig, signalhandler_callable handler_func);
-int setup_signal_handler_with_flags(int sig,
-                                    signalhandler_callable handler_func,
-                                    int sa_flags);
+int signalhandling_setup_handler(int sig,
+                                 signalhandling_handler_callable handler_func);
+int signalhandling_setup_handler_with_flags(
+        int sig,
+        signalhandling_handler_callable handler_func,
+        int sa_flags);
 
 #ifdef __cplusplus
 }

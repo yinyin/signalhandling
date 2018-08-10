@@ -10,7 +10,7 @@ int main(int argc, char *const argv[]) {
         printf("SIGINT with default handler... %d\n", i);
         sleep(1);
     }
-    ignore_signal(SIGINT);
+    signalhandling_ignore_signal(SIGINT);
     for (i = 3; i > 0; i--) {
         unsigned int unslept_sec;
         printf("SIGINT ignored... %d\n", i);

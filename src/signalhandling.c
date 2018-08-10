@@ -6,7 +6,7 @@
 
 #include "signalhandling/signalhandling.h"
 
-int ignore_signal(int sig) {
+int signalhandling_ignore_signal(int sig) {
     struct sigaction sigact;
     memset(&sigact, 0, sizeof(sigact));
     sigact.sa_handler = SIG_IGN;
@@ -19,7 +19,8 @@ int ignore_signal(int sig) {
     return 0;
 }
 
-int setup_stop_signal_handler(signalhandler_callable handler_func) {
+int signalhandling_setup_stop_signal_handler(
+        signalhandling_handler_callable handler_func) {
     struct sigaction sigact;
     memset(&sigact, 0, sizeof(sigact));
     sigact.sa_handler = handler_func;
@@ -35,7 +36,8 @@ int setup_stop_signal_handler(signalhandler_callable handler_func) {
     return 0;
 }
 
-int setup_signal_handler(int sig, signalhandler_callable handler_func) {
+int signalhandling_setup_handler(int sig,
+                                 signalhandling_handler_callable handler_func) {
     struct sigaction sigact;
     memset(&sigact, 0, sizeof(sigact));
     sigact.sa_handler = handler_func;
@@ -49,9 +51,10 @@ int setup_signal_handler(int sig, signalhandler_callable handler_func) {
     return 0;
 }
 
-int setup_signal_handler_with_flags(int sig,
-                                    signalhandler_callable handler_func,
-                                    int sa_flags) {
+int signalhandling_setup_handler_with_flags(
+        int sig,
+        signalhandling_handler_callable handler_func,
+        int sa_flags) {
     struct sigaction sigact;
     memset(&sigact, 0, sizeof(sigact));
     sigact.sa_handler = handler_func;

@@ -21,10 +21,17 @@ int signalhandling_ignore_signal(int sig) {
 
 int signalhandling_setup_stop_signal_handler(
         signalhandling_handler_callable handler_func) {
+    return signalhandling_setup_stop_signal_handler_with_flags(handler_func,
+                                                               SA_RESTART);
+}
+
+int signalhandling_setup_stop_signal_handler_with_flags(
+        signalhandling_handler_callable handler_func,
+        int sa_flags) {
     struct sigaction sigact;
     memset(&sigact, 0, sizeof(sigact));
     sigact.sa_handler = handler_func;
-    sigact.sa_flags = SA_RESTART;
+    sigact.sa_flags = sa_flags;
     if (0 != sigaction(SIGTERM, &sigact, NULL)) {
         RECORD_ERROR(LOG_ERR, "failed on setting up SIGTERM signal handler");
         return -1;

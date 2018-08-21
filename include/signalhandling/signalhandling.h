@@ -11,6 +11,9 @@ int signalhandling_ignore_signal(int sig);
 
 int signalhandling_setup_stop_signal_handler(
         signalhandling_handler_callable handler_func);
+int signalhandling_setup_stop_signal_handler_with_flags(
+        signalhandling_handler_callable handler_func,
+        int sa_flags);
 
 int signalhandling_setup_handler(int sig,
                                  signalhandling_handler_callable handler_func);
